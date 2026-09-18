@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>코그 | KOREA GLOBAL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f1ede1;
+    --ink: #1c1a16;
+    --ink-soft: #5c5748;
+    --rule: #cabfa4;
+    --stamp: #9c3b1f;
+    --stamp-deep: #7a2d16;
+    --seal: #35513a;
+    --panel: #f8f6ee;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #17150f;
+      --ink: #e9e4d4;
+      --ink-soft: #a89e86;
+      --rule: #3c382a;
+      --stamp: #e0755a;
+      --stamp-deep: #ec9a83;
+      --seal: #7fae86;
+      --panel: #1e1c15;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #17150f;
+    --ink: #e9e4d4;
+    --ink-soft: #a89e86;
+    --rule: #3c382a;
+    --stamp: #e0755a;
+    --stamp-deep: #ec9a83;
+    --seal: #7fae86;
+    --panel: #1e1c15;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Noto Sans KR', -apple-system, sans-serif;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+  /* Masthead */
+  .masthead {
+    border-bottom: 3px solid var(--ink);
+    padding: 28px 0 18px;
+  }
+  .masthead-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--ink-soft);
+    letter-spacing: 0.02em;
+  }
+  .kinn-tag strong { color: var(--stamp); font-weight: 600; }
+  .masthead-inner { position: relative; }
+  .stamp-badge {
+    position: absolute;
+    top: 6px;
+    right: 4px;
+    width: 92px;
+    height: 92px;
+    border: 2px solid var(--stamp);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    transform: rotate(-9deg);
+    color: var(--stamp);
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    font-size: 0.72rem;
+    line-height: 1.3;
+    letter-spacing: 0.04em;
+    mix-blend-mode: multiply;
+    opacity: 0.85;
+    pointer-events: none;
+  }
+  @media (max-width: 640px) { .stamp-badge { display: none; } }
+  :root[data-theme="dark"] .stamp-badge { mix-blend-mode: normal; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .stamp-badge { mix-blend-mode: normal; }
+  }
+  .wordmark {
+    font-family: 'Gowun Batang', serif;
+    font-weight: 900;
+    font-size: clamp(2.6rem, 7vw, 4.4rem);
+    margin: 10px 0 4px;
+    letter-spacing: -0.01em;
+    line-height: 1;
+  }
+  .tagline {
+    font-size: 1rem;
+    color: var(--ink-soft);
+    font-family: 'Gowun Batang', serif;
+  }
+  .wordmark-en {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 500;
+    font-size: 0.32em;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+
+  nav.section-nav {
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    margin-top: 18px;
+  }
+  nav.section-nav ul {
+    display: flex;
+    gap: 28px;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    padding: 12px 0;
+    font-size: 0.92rem;
+    font-weight: 500;
+  }
+  nav.section-nav a { text-decoration: none; }
+  nav.section-nav a:hover { color: var(--stamp); }
+
+  /* Hero */
+  .hero {
+    padding: 48px 0 40px;
+    border-bottom: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 40px;
+  }
+  @media (max-width: 720px) {
+    .hero { grid-template-columns: 1fr; }
+  }
+  .hero-eyebrow {
+    color: var(--stamp);
+    font-weight: 600;
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+  }
+  .hero h1 {
+    font-family: 'Gowun Batang', serif;
+    font-size: clamp(1.6rem, 4vw, 2.5rem);
+    line-height: 1.3;
+    margin: 0 0 14px;
+    font-weight: 700;
+  }
+  .hero p.dek {
+    color: var(--ink-soft);
+    font-size: 1.02rem;
+    max-width: 60ch;
+  }
+  .hero-meta {
+    margin-top: 18px;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+  }
+  .hero-side { border-left: 1px solid var(--rule); padding-left: 32px; }
+  @media (max-width: 720px) {
+    .hero-side { border-left: none; border-top: 1px solid var(--rule); padding-left: 0; padding-top: 24px; }
+  }
+  .hero-side h2 {
+    font-family: 'Gowun Batang', serif;
+    font-size: 1.05rem;
+    margin: 0 0 16px;
+  }
+  .side-item {
+    padding: 14px 0;
+    border-top: 1px solid var(--rule);
+    font-size: 0.92rem;
+  }
+  .side-item:first-of-type { border-top: none; padding-top: 0; }
+  .side-item .cat {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    font-weight: 500;
+    color: var(--stamp);
+    border: 1px solid var(--stamp);
+    padding: 1px 7px;
+    margin-bottom: 6px;
+  }
+
+  /* Story grid */
+  .stories {
+    padding: 44px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 24px;
+  }
+  .section-head h2 {
+    font-family: 'Gowun Batang', serif;
+    font-size: 1.3rem;
+    margin: 0;
+  }
+  .section-head span {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--ink-soft);
+    border: 1px solid var(--rule);
+    padding: 3px 9px;
+  }
+
+  .story-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px 32px;
+  }
+  @media (max-width: 780px) {
+    .story-grid { grid-template-columns: 1fr; }
+  }
+  .story {
+    border-left: 3px solid var(--rule);
+    padding: 4px 0 4px 18px;
+  }
+  .story .cat {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    font-weight: 500;
+    color: var(--stamp);
+    border: 1px solid var(--stamp);
+    padding: 1px 7px;
+  }
+  .story h3 {
+    font-family: 'Gowun Batang', serif;
+    font-size: 1.12rem;
+    line-height: 1.4;
+    margin: 8px 0 8px;
+    font-weight: 600;
+  }
+  .story p { font-size: 0.9rem; color: var(--ink-soft); margin: 0 0 10px; }
+  .story .byline { font-size: 0.78rem; color: var(--ink-soft); }
+
+  /* Column series */
+  .column-section {
+    padding: 44px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .column-intro {
+    color: var(--ink-soft);
+    font-size: 0.94rem;
+    max-width: 68ch;
+    margin: 0 0 28px;
+  }
+  .column-item {
+    border-top: 1px solid var(--rule);
+  }
+  .column-item:last-child { border-bottom: 1px solid var(--rule); }
+  .column-item summary {
+    cursor: pointer;
+    list-style: none;
+    padding: 18px 0;
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+  }
+  .column-item summary::-webkit-details-marker { display: none; }
+  .column-item summary .num {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--stamp);
+    font-weight: 600;
+    font-size: 0.78rem;
+    border: 1px solid var(--stamp);
+    padding: 1px 7px;
+    flex-shrink: 0;
+  }
+  .column-item summary .col-title {
+    font-family: 'Gowun Batang', serif;
+    font-size: 1.08rem;
+    font-weight: 600;
+  }
+  .column-item summary .toggle {
+    margin-left: auto;
+    color: var(--ink-soft);
+    font-size: 0.85rem;
+  }
+  .column-item[open] summary .toggle::after { content: "닫기"; }
+  .column-item:not([open]) summary .toggle::after { content: "펼치기"; }
+  .column-body {
+    padding: 0 0 24px;
+    font-size: 0.94rem;
+    color: var(--ink-soft);
+  }
+  .column-body p { margin: 0 0 14px; }
+  .column-body .col-note {
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    border-top: 1px solid var(--rule);
+    padding-top: 12px;
+    margin-top: 8px;
+  }
+
+  /* About / mission */
+  .about {
+    padding: 48px 0;
+    border-bottom: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+  }
+  @media (max-width: 720px) {
+    .about { grid-template-columns: 1fr; gap: 24px; }
+  }
+  .about h2 {
+    font-family: 'Gowun Batang', serif;
+    font-size: 1.6rem;
+    margin: 0 0 16px;
+  }
+  .about p { color: var(--ink-soft); font-size: 0.96rem; }
+  .principle-list { margin: 20px 0 0; padding: 0; list-style: none; }
+  .principle-list li {
+    padding: 12px 0;
+    border-top: 1px solid var(--rule);
+    font-size: 0.92rem;
+    display: flex;
+    gap: 14px;
+  }
+  .principle-list li:first-child { border-top: none; }
+  .principle-list .mark { color: var(--seal); font-weight: 700; font-family: 'Gowun Batang', serif; }
+
+  /* Contact / footer */
+  footer { padding: 44px 0 40px; }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 40px;
+  }
+  @media (max-width: 720px) {
+    .footer-grid { grid-template-columns: 1fr; }
+  }
+  footer h2 {
+    font-family: 'Gowun Batang', serif;
+    font-size: 1.2rem;
+    margin: 0 0 14px;
+  }
+  .contact-line { font-size: 0.92rem; margin: 6px 0; color: var(--ink-soft); }
+  .contact-line strong { color: var(--ink); font-weight: 600; }
+  .foot-note {
+    margin-top: 24px;
+    padding-top: 18px;
+    border-top: 1px solid var(--rule);
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="masthead-top">
+      <div class="kinn-tag"><strong>KINN</strong> 한국독립언론네트워크 회원사 / 뉴스타파함께재단 협력매체</div>
+      <div class="date-tag" id="today"></div>
+    </div>
+    <div class="masthead-inner">
+      <div class="wordmark">코그 <span class="wordmark-en">KOREA GLOBAL</span></div>
+      <div class="tagline">독립적 시각으로 진실을 취재합니다</div>
+      <div class="stamp-badge">취재중<br>ONGOING<br>COVERAGE</div>
+    </div>
+    <nav class="section-nav">
+      <ul>
+        <li><a href="#stories">탐사보도</a></li>
+        <li><a href="#stories">정치·사회</a></li>
+        <li><a href="#stories">경제·기업</a></li>
+        <li><a href="#column">칼럼</a></li>
+        <li><a href="#column-en">English</a></li>
+        <li><a href="https://gilbertcompliance.co.kr/" target="_blank" rel="noopener">교육</a></li>
+        <li><a href="#about">코그 소개</a></li>
+        <li><a href="#contact">제보·문의</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div>
+      <div class="hero-eyebrow">오늘의 탐사보도</div>
+      <h1>선언뿐인 컴플라이언스, 실행되는 컴플라이언스: 국내 대기업 자율준수 실태를 짚다</h1>
+      <p class="dek">공정거래위원회의 등급평가에서 우수 등급을 받은 기업들이 반복적으로 법 위반에 연루되는 사례를 통해, 제도의 실효성에 대한 의문을 짚어봅니다. 코그가 KINN 네트워크와 함께 취재했습니다.</p>
+      <div class="hero-meta">편집장 김선영 · 코그</div>
+    </div>
+    <div class="hero-side">
+      <h2>많이 읽은 기사</h2>
+      <div class="side-item">
+        <span class="cat">영상</span>
+        <a href="https://www.youtube.com/watch?v=eaJAJ78y4_0&t=3139s" target="_blank" rel="noopener">이준길 코그고문, 삼프로TV 출연 영상</a>
+      </div>
+      <div class="side-item">
+        <span class="cat">정부업무보고</span>
+        <a href="https://www.youtube.com/live/oRxy8imLniA?si=jAA_G_yTM1eGbAVK" target="_blank" rel="noopener">공정위·금융위 업무보고, 쿠팡 개인정보 유출 사태 도마 위에</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="stories" id="stories">
+    <div class="section-head">
+      <h2>최신 기사</h2>
+      <span>전체 보기</span>
+    </div>
+    <div class="story-grid">
+      <article class="story">
+        <span class="cat">하도급</span>
+        <h3>협력업체 도면 무단 활용한 난방기기 제조업체, 공정위 제재</h3>
+        <p>부품 구매단가를 낮추려 협력업체를 이원화하는 과정에서, 기존 수급사업자의 온도센서 도면을 무단으로 자사 도면화해 경쟁업체에 제공한 난방기기 제조업체가 공정거래위원회 제재를 받았습니다.</p>
+        <div class="byline"><a href="https://gilbertcompliance.co.kr/case-subcontract-2026-08-28/" target="_blank" rel="noopener">길버트컴플라이언스 원문 보기</a></div>
+      </article>
+      <article class="story">
+        <span class="cat">입법동향</span>
+        <h3>AI 성능 광고, 이제는 실증 못 하면 중지명령</h3>
+        <p>공정거래위원회가 「표시·광고 내용의 실증에 관한 운영 고시」를 개정해, AI·신기술을 내세운 광고도 사전 실증 대상임을 명확히 했습니다. 자료 제출 기한은 최대 30일로 단축되고, 기한 내 미제출 시 광고 중지명령과 과태료가 뒤따릅니다.</p>
+        <div class="byline"><a href="https://gilbertcompliance.co.kr/legal-update-2026-09-02/" target="_blank" rel="noopener">길버트컴플라이언스 원문 보기</a></div>
+      </article>
+      <article class="story">
+        <span class="cat">입법동향</span>
+        <h3>공시의무 위반, 반복하면 최대 50% 가중 — 봐주기 감경은 대폭 삭제</h3>
+        <p>공정거래위원회가 대기업집단 공시의무 위반 과태료 고시 개정안을 행정예고했습니다. 종전엔 4회 이상 위반해야 붙던 가중이 1회부터 적용되고, 지연일수·최초위반 감경은 사라집니다. 최근 5년간 50개 넘는 기업이 2회 이상 반복 위반한 것으로 나타났습니다.</p>
+        <div class="byline"><a href="https://gilbertcompliance.co.kr/legal-update-2026-09-07/" target="_blank" rel="noopener">길버트컴플라이언스 원문 보기</a></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="column-section" id="column">
+    <div class="section-head">
+      <h2>칼럼: 컴플라이언스가 답이다</h2>
+      <span>전 5회</span>
+    </div>
+    <p class="column-intro">코그 편집부가 이준길, 『공정거래 리스크 관리 — 컴플라이언스가 답이다』(유비북스, 2018)를 바탕으로 요약·재구성한 연재입니다. 항목을 눌러 전문을 확인하세요.</p>
+
+    <details class="column-item">
+      <summary><span class="num">1회</span><span class="col-title">청문회 증인석에서 시작된 질문</span><span class="toggle"></span></summary>
+      <div class="column-body">
+        <p>2008년 가을, 저자는 국회 정무위원회 국정감사에 증인으로 출석합니다. 질문의 핵심은 단순했습니다. 공정거래위원회 출신 인사가 퇴직 직후 관련 기업으로 자리를 옮기는 것이 로비 아니냐는 것. 저자는 자신의 업무가 소송이나 로비가 아니라 '컴플라이언스 프로그램' 운영이라고 답합니다.</p>
+        <p>이 짧은 문답이 책 전체를 관통하는 질문을 던집니다. 기업 안에서 법규를 자율적으로 지키게 만드는 일은, 실제로 무엇을 하는 일인가. 그리고 그것은 왜 필요한가.</p>
+        <p>저자가 제시하는 답은 명확합니다. 1990년대 후반 이후 공정거래 위반에 대한 제재는 시정명령 수준에서 수백억 원대 과징금과 형사고발로 급격히 무거워졌습니다. 게다가 공정거래 위반은 '비윤리적 경영'이라는 낙인으로 이어져 브랜드 이미지에 직접 타격을 줍니다. 국내 규제를 넘어 미국·EU 등 해외 제재로 확산되는 사례도 늘고 있습니다. 그럼에도 국내 기업 다수는 여전히 사고가 터진 뒤에야 대응하는 '사후약방문' 구조에 머물러 있다는 것이 저자의 진단입니다.</p>
+        <p class="col-note">다음 회 — '공정거래 리스크'란 정확히 무엇을 가리키는지, 그리고 그것이 왜 관리 대상이 되어야 하는지를 다룹니다.</p>
+      </div>
+    </details>
+
+    <details class="column-item">
+      <summary><span class="num">2회</span><span class="col-title">리스크는 안 보일 뿐, 항상 거기 있다</span><span class="toggle"></span></summary>
+      <div class="column-body">
+        <p>책은 2009년 영화 《The Informant!》의 한 장면으로 이야기를 엽니다. 국제 카르텔 모임에 처음 참석한 한 한국 기업 임원이 "우리도 진작 이 모임에 낄 걸 그랬다"는 식의 태도를 보이는 장면입니다. 저자는 이 장면을 통해, 담합이 내부자들에게는 얼마나 자연스럽게 느껴질 수 있는지를 보여줍니다. 실제로 이 사건으로 관련 기업들은 수백만 달러대 벌금과 임원 실형을 감수해야 했습니다.</p>
+        <p>저자는 '공정거래 리스크'를 넓게 정의합니다. 공정거래법뿐 아니라 하도급법, 대규모유통업법, 가맹사업법 등 공정거래위원회가 관장하는 모든 법령 위반 가능성이 여기에 포함됩니다. 그리고 리스크(잠재적 가능성)와 이슈(실제로 터진 문제)를 구분합니다. 아무리 관리를 잘해도 이슈는 발생하지만, 관리 여부에 따라 그 충격의 크기는 완전히 달라진다는 것이 핵심입니다.</p>
+        <p>책이 짚는 위험 요인은 다양합니다. 과징금 규모의 확대, 형사처벌 가능성의 증가, 평판 리스크, 거래 기회의 상실, 그리고 무엇보다 '사전에 위법 여부를 알기 어렵다'는 공정거래법 특유의 모호함입니다. "부당하게", "정당한 이유 없이"라는 문구로 이루어진 조항들은, 행위 당시에는 적법해 보이던 일이 사후적으로 위법 판정을 받을 수 있다는 뜻이기도 합니다. 여기에 "실적과 준법이 충돌할 때 실적을 우선하는" 조직 문화가 더해지면, 리스크는 구조적으로 커질 수밖에 없습니다.</p>
+        <p class="col-note">다음 회 — 이런 리스크를 예방하기 위한 도구, '컴플라이언스 프로그램'이 실제로 무엇을 의미하는지 살펴봅니다.</p>
+      </div>
+    </details>
+
+    <details class="column-item">
+      <summary><span class="num">3회</span><span class="col-title">액자 속의 선언문이 되지 않으려면</span><span class="toggle"></span></summary>
+      <div class="column-body">
+        <p>'컴플라이언스 프로그램'이라는 말은 종종 회사 로비에 걸린 액자 속 선언문 정도로 여겨집니다. 저자는 이 통념을 정면으로 반박합니다. 진짜 컴플라이언스는 문서가 아니라 시스템이어야 하고, 시스템은 실행되지 않으면 존재하지 않는 것과 같다는 것입니다.</p>
+        <p>이 대목에서 저자가 즐겨 쓰는 비유가 물레방아입니다. 아무리 정교하게 만든 물레방아라도 물이 흐르지 않으면 장식품에 불과합니다. 저자는 실제로 충주의 한 공원에서 관리되지 않아 멈춰버린 물레방아 사례를 들어, "잘 만든 제도"와 "작동하는 제도"는 전혀 다른 것이라고 말합니다.</p>
+        <p>책은 효과적인 컴플라이언스 프로그램의 조건을 미국 연방양형기준과 한국 공정거래위원회의 자율준수 프로그램 규정을 나란히 놓고 비교합니다. 두 기준 모두 결국 같은 질문으로 수렴합니다. 최고경영자가 진심으로 이 일을 우선순위에 두는가, 전담 조직에 실질적 권한이 있는가, 그리고 위반자에 대한 평가·보상이 선언과 일치하는가. 저자는 "법이 밥 먹여 주냐"는 한마디가 회의실에서 나오는 순간, 그동안의 모든 선포식과 서약서는 무의미해진다고 잘라 말합니다.</p>
+        <p class="col-note">다음 회 — 이 시스템을 실제로 누가, 어떻게 운영해야 하는지를 다룹니다.</p>
+      </div>
+    </details>
+
+    <details class="column-item">
+      <summary><span class="num">4회</span><span class="col-title">감춰야 할 문제와 드러내야 할 문화</span><span class="toggle"></span></summary>
+      <div class="column-body">
+        <p>컴플라이언스 조직을 현업 부서와 분리해야 한다는 것이 저자의 일관된 주장입니다. 성과를 내야 하는 부서와, 그 과정의 위험을 통제해야 하는 기능은 본질적으로 충돌하기 때문입니다. 이상적인 형태는 대표이사에게 직접 보고하는 자율준수관리자와, 3인 내외의 소규모 전담팀입니다.</p>
+        <p>이 책에서 가장 인상적인 대목 중 하나는 '핫라인'과 '모니터링'의 한계를 솔직하게 인정하는 부분입니다. 저자는 대부분의 내부 신고 시스템이 사실상 장식에 불과하다고 말합니다. 익명성에 대한 신뢰가 없으면, 직원도 협력사도 결국 침묵을 선택하기 때문입니다. 저자가 제안하는 대안은 기술적인 익명성 보장보다 훨씬 단순합니다. "말해도 불이익이 없다"는 믿음을 조직 문화로 만드는 것. 이것이 이루어지지 않으면 최고경영자는 늘 "회사 일을 가장 늦게 아는 사람"이 될 수밖에 없다는 것입니다.</p>
+        <p>문서 관리에 대한 조언도 실용적입니다. 잘못 작성된 보고서 한 줄이 훗날 조사에서 결정적 증거가 될 수 있는 반면, 성급하게 폐기한 자료가 오히려 회사의 무혐의를 입증할 기회를 없애버릴 수도 있다는 것입니다.</p>
+        <p class="col-note">마지막 회 — 이 모든 시스템이 왜 '평상시'에 특히 중요한지, 그리고 이 책이 남기는 메시지를 정리합니다.</p>
+      </div>
+    </details>
+
+    <details class="column-item">
+      <summary><span class="num">5회</span><span class="col-title">사건이 없을 때가 가장 위험한 시간</span><span class="toggle"></span></summary>
+      <div class="column-body">
+        <p>책의 마지막 부는 예방을 넘어, 실제 이슈가 터졌을 때의 '대응 시스템'을 다룹니다. 저자는 대표이사 직속의 '이슈관리 위원회' 같은 구조를 제안하는데, 핵심은 재무·법무·현업 등 여러 부서의 이해관계가 충돌할 때 이를 조정할 최종 권한자가 미리 정해져 있어야 한다는 것입니다. 위기의 순간에 "누가 결정할 것인가"를 그제야 논의하면 이미 늦다는 뜻입니다.</p>
+        <p>이 책 전체를 관통하는 마지막 통찰은 다음과 같습니다. 시스템이 가장 취약해지는 시점은 사고 직후가 아니라, 아무 일도 일어나지 않는 평온한 시기라는 것. 과징금을 맞은 직후에는 누구나 리스크 관리에 열심이지만, 몇 년간 조사를 받지 않으면 경각심은 자연스럽게 무뎌집니다. 저자는 이것을 "회사도 미루는 습관이 있다"는 말로 정리합니다.</p>
+        <p>저자는 스스로 이 책이 "새로운 지식이나 아이디어"를 담고 있지 않다고 겸손하게 말합니다. 하지만 바로 그 지점, 즉 당연한 것을 당연하게 실행하는 일의 어려움을 정면으로 다뤘다는 점에서, 이 책은 컴플라이언스를 형식적 절차가 아니라 조직 문화의 문제로 다시 보게 만듭니다.</p>
+        <p class="col-note">(연재 마침) — 이준길, 『공정거래 리스크 관리 — 컴플라이언스가 답이다』(유비북스, 2018)</p>
+      </div>
+    </details>
+  </section>
+
+  <section class="column-section" id="column-en">
+    <div class="section-head">
+      <h2>English Column: Compliance Is the Answer</h2>
+      <span>Ongoing series</span>
+    </div>
+    <p class="column-intro">KOREA GLOBAL's English-language column, introducing Lee Jun-gil's <em>Fair Trade Risk Management — Compliance Is the Answer</em> (UB Books, 2018) for international readers, one installment at a time.</p>
+
+    <details class="column-item">
+      <summary><span class="num">Part 1</span><span class="col-title">A Question Born in a Committee Room</span><span class="toggle"></span></summary>
+      <div class="column-body">
+        <p>In October 2008, the author testified before a National Assembly committee, facing pointed questions about whether his move from Korea's Fair Trade Commission (KFTC) into a corporate strategy role amounted to lobbying. His answer: his job was compliance, not litigation or influence-peddling.</p>
+        <p>That exchange, he says, crystallized a career-long conviction. Since the late 1990s, penalties for fair-trade violations have escalated from simple corrective orders to fines in the tens or hundreds of billions of won, often paired with criminal referrals. Violations increasingly damage brand reputation and, given the internationalization of competition law, can trigger parallel sanctions abroad — frequently harsher than Korea's own. Yet many Korean companies remain reactive rather than preventive, in part because compliance expertise is still scarce domestically.</p>
+        <p class="col-note">Next: what "fair trade risk" actually covers, and why it deserves active management.</p>
+      </div>
+    </details>
+
+    <details class="column-item">
+      <summary><span class="num">Part 2</span><span class="col-title">Risk Doesn't Announce Itself</span><span class="toggle"></span></summary>
+      <div class="column-body">
+        <p>The book opens with a scene from the 2009 film <em>The Informant!</em>, dramatizing the real ADM lysine cartel — including a newly invited Korean executive shown almost eager to join. The real penalties were severe: ADM paid $100 million; Ajinomoto and Kyowa Hakko roughly $10 million each; several executives served over 30 months in prison. Korean firms alone have paid roughly ₩3.3 trillion combined across 17 international cartel cases.</p>
+        <p>"Fair trade risk" is defined broadly here — covering not just Korea's Fair Trade Act but subcontracting, franchise, large-retail, and consumer-protection statutes as well. The author draws a careful line between <em>risk</em> (an ever-present possibility to be managed) and <em>issue</em> (a problem that has already materialized).</p>
+        <p>Among the risk factors he highlights: ballooning fines, rising criminal exposure, reputational contagion via social media, exclusion from future contracts, and — perhaps most distinctively — the fact that Korean fair-trade law's vague standards ("unjustly," "without justification") often make legality clear only in hindsight.</p>
+        <p class="col-note">Next: what a "compliance program" actually means in practice.</p>
+      </div>
+    </details>
+
+    <details class="column-item">
+      <summary><span class="num">Part 3</span><span class="col-title">More Than a Framed Declaration</span><span class="toggle"></span></summary>
+      <div class="column-body">
+        <p>A compliance program is often reduced, in practice, to a framed mission statement in a lobby. The author pushes back hard on that image: real compliance is a system, and an unexecuted system is no system at all.</p>
+        <p>His recurring metaphor is a decorative waterwheel he encountered in a public park — beautifully built, but motionless, because no water was flowing through it. A "well-designed" program and a "working" program, he argues, are entirely different things.</p>
+        <p>The book compares the U.S. Federal Sentencing Guidelines' seven criteria for an effective compliance program with the KFTC's own seven-element framework — both converging on the same core questions: Does leadership genuinely prioritize this? Does the compliance function have real authority? Do promotion and discipline decisions actually match the stated values? A single dismissive remark from a senior executive, he warns, can undo years of public commitment.</p>
+        <p class="col-note">Next: who should actually run this system, and how.</p>
+      </div>
+    </details>
+
+    <details class="column-item">
+      <summary><span class="num">Part 4</span><span class="col-title">What Gets Hidden, What Gets Voiced</span><span class="toggle"></span></summary>
+      <div class="column-body">
+        <p>The author consistently argues that the compliance function must sit apart from operating business units — since a unit's mandate to pursue growth is structurally at odds with compliance's job of curbing risk. His ideal model: a compliance officer reporting directly to the CEO, backed by a lean team of three.</p>
+        <p>One of the book's more candid sections addresses the limits of hotlines and monitoring. Most internal reporting systems, he admits, are effectively decorative — because employees, suppliers, and partners rarely trust that anonymity will actually protect them. His proposed fix is less technical than cultural: making "no retaliation" a lived reality, not just a policy line. Without it, he notes dryly, senior executives are always "the last to know" what's happening in their own company.</p>
+        <p>His advice on documentation is equally practical: a single carelessly worded internal report can become the key piece of evidence in a future investigation — while records destroyed too hastily can just as easily strip a company of its own best defense.</p>
+        <p class="col-note">Next: why the quietest periods are often the most dangerous.</p>
+      </div>
+    </details>
+
+    <details class="column-item">
+      <summary><span class="num">Part 5</span><span class="col-title">The Danger of Nothing Happening</span><span class="toggle"></span></summary>
+      <div class="column-body">
+        <p>The book's final section moves from prevention to response — proposing a CEO-chaired Issue Management Committee empowered to resolve conflicts between departments (finance, legal, operations) that might otherwise stall a fix while a problem festers.</p>
+        <p>Its closing insight is perhaps the book's sharpest: a compliance system is most vulnerable not right after a scandal, but during the quiet years when nothing seems to be going wrong. Vigilance peaks immediately after a penalty and fades steadily without renewed pressure — what the author calls, simply, companies having "a habit of procrastinating, just like people do."</p>
+        <p>The author is modest about his own contribution, insisting the book offers no new theory or striking idea. But in insisting on the sheer difficulty of consistently doing the obvious thing, it reframes compliance as a question of organizational culture — not paperwork.</p>
+        <p class="col-note">(End of series) — Lee Jun-gil, <em>Fair Trade Risk Management — Compliance Is the Answer</em> (UB Books, 2018)</p>
+      </div>
+    </details>
+  </section>
+
+  <section class="about" id="about">
+    <div>
+      <h2>코그를 소개합니다</h2>
+      <p>코그(KOREA GLOBAL)는 한국독립언론네트워크(KINN) 소속 매체로, 권력과 자본으로부터 독립적인 시각을 지키며 공공의 이익을 위한 탐사보도를 지향합니다. 뉴스타파함께재단과 협력하여 취재 역량과 재원의 독립성을 함께 유지하고 있습니다.</p>
+      <p>편집장 김선영은 미국 변호사 자격을 바탕으로 기업 지배구조, 공정거래, 컴플라이언스 이슈를 중점적으로 다루고 있습니다.</p>
+    </div>
+    <div>
+      <h2>취재 원칙</h2>
+      <ul class="principle-list">
+        <li><span class="mark">一</span> 사실 확인 없이는 보도하지 않습니다.</li>
+        <li><span class="mark">二</span> 취재원 보호를 최우선으로 합니다.</li>
+        <li><span class="mark">三</span> 광고주·후원자의 압력으로부터 편집권을 지킵니다.</li>
+        <li><span class="mark">四</span> 정정과 반론은 신속하고 투명하게 반영합니다.</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <div class="footer-grid">
+      <div>
+        <h2>제보 및 문의</h2>
+        <p class="contact-line"><strong>편집장</strong> 김선영 (Sophia Kim)</p>
+        <p class="contact-line"><strong>전화</strong> 010-7788-1029</p>
+        <p class="contact-line"><strong>이메일</strong> sophiakim1028@naver.com</p>
+        <p class="contact-line"><strong>주소</strong> 경기도 안양시 동안구 관양동 시민대로 327번길 11-41 4012호</p>
+      </div>
+      <div>
+        <h2>코그 소식받기</h2>
+        <p class="contact-line">제보는 익명으로도 가능하며, 모든 제보는 코그의 취재 윤리 원칙에 따라 신중히 검토됩니다.</p>
+      </div>
+    </div>
+    <div class="foot-note">© 코그(KOREA GLOBAL) · KINN 한국독립언론네트워크 회원사</div>
+  </footer>
+
+</div>
+<script>
+  try {
+    const d = new Date();
+    document.getElementById('today').textContent = d.toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' });
+  } catch (e) {}
+</script>
+</body>
+</html>
