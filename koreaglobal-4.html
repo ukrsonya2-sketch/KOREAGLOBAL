@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>코그 | KOREA GLOBAL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f1ede1;
+    --ink: #1c1a16;
+    --ink-soft: #5c5748;
+    --rule: #cabfa4;
+    --stamp: #9c3b1f;
+    --stamp-deep: #7a2d16;
+    --seal: #35513a;
+    --panel: #f8f6ee;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #17150f;
+      --ink: #e9e4d4;
+      --ink-soft: #a89e86;
+      --rule: #3c382a;
+      --stamp: #e0755a;
+      --stamp-deep: #ec9a83;
+      --seal: #7fae86;
+      --panel: #1e1c15;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #17150f;
+    --ink: #e9e4d4;
+    --ink-soft: #a89e86;
+    --rule: #3c382a;
+    --stamp: #e0755a;
+    --stamp-deep: #ec9a83;
+    --seal: #7fae86;
+    --panel: #1e1c15;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Noto Sans KR', -apple-system, sans-serif;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+  /* Masthead */
+  .masthead {
+    border-bottom: 3px solid var(--ink);
+    padding: 28px 0 18px;
+  }
+  .masthead-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--ink-soft);
+    letter-spacing: 0.02em;
+  }
+  .kinn-tag strong { color: var(--stamp); font-weight: 600; }
+  .masthead-inner { position: relative; }
+  .stamp-badge {
+    position: absolute;
+    top: 6px;
+    right: 4px;
+    width: 92px;
+    height: 92px;
+    border: 2px solid var(--stamp);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    transform: rotate(-9deg);
+    color: var(--stamp);
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    font-size: 0.72rem;
+    line-height: 1.3;
+    letter-spacing: 0.04em;
+    mix-blend-mode: multiply;
+    opacity: 0.85;
+    pointer-events: none;
+  }
+  @media (max-width: 640px) { .stamp-badge { display: none; } }
+  :root[data-theme="dark"] .stamp-badge { mix-blend-mode: normal; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .stamp-badge { mix-blend-mode: normal; }
+  }
+  .wordmark {
+    font-family: 'Gowun Batang', serif;
+    font-weight: 900;
+    font-size: clamp(2.6rem, 7vw, 4.4rem);
+    margin: 10px 0 4px;
+    letter-spacing: -0.01em;
+    line-height: 1;
+  }
+  .tagline {
+    font-size: 1rem;
+    color: var(--ink-soft);
+    font-family: 'Gowun Batang', serif;
+  }
+  .wordmark-en {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 500;
+    font-size: 0.32em;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+
+  nav.section-nav {
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    margin-top: 18px;
+  }
+  nav.section-nav ul {
+    display: flex;
+    gap: 28px;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    padding: 12px 0;
+    font-size: 0.92rem;
+    font-weight: 500;
+  }
+  nav.section-nav a { text-decoration: none; }
+  nav.section-nav a:hover { color: var(--stamp); }
+
+  /* Hero */
+  .hero {
+    padding: 48px 0 40px;
+    border-bottom: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 40px;
+  }
+  @media (max-width: 720px) {
+    .hero { grid-template-columns: 1fr; }
+  }
+  .hero-eyebrow {
+    color: var(--stamp);
+    font-weight: 600;
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+  }
+  .hero h1 {
+    font-family: 'Gowun Batang', serif;
+    font-size: clamp(1.6rem, 4vw, 2.5rem);
+    line-height: 1.3;
+    margin: 0 0 14px;
+    font-weight: 700;
+  }
+  .hero p.dek {
+    color: var(--ink-soft);
+    font-size: 1.02rem;
+    max-width: 60ch;
+  }
+  .hero-meta {
+    margin-top: 18px;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+  }
+  .hero-side { border-left: 1px solid var(--rule); padding-left: 32px; }
+  @media (max-width: 720px) {
+    .hero-side { border-left: none; border-top: 1px solid var(--rule); padding-left: 0; padding-top: 24px; }
+  }
+  .hero-side h2 {
+    font-family: 'Gowun Batang', serif;
+    font-size: 1.05rem;
+    margin: 0 0 16px;
+  }
+  .side-item {
+    padding: 14px 0;
+    border-top: 1px solid var(--rule);
+    font-size: 0.92rem;
+  }
+  .side-item:first-of-type { border-top: none; padding-top: 0; }
+  .side-item .cat {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    font-weight: 500;
+    color: var(--stamp);
+    border: 1px solid var(--stamp);
+    padding: 1px 7px;
+    margin-bottom: 6px;
+  }
+
+  /* Story grid */
+  .stories {
+    padding: 44px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 24px;
+  }
+  .section-head h2 {
+    font-family: 'Gowun Batang', serif;
+    font-size: 1.3rem;
+    margin: 0;
+  }
+  .section-head span {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--ink-soft);
+    border: 1px solid var(--rule);
+    padding: 3px 9px;
+  }
+
+  .story-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px 32px;
+  }
+  @media (max-width: 780px) {
+    .story-grid { grid-template-columns: 1fr; }
+  }
+  .story {
+    border-left: 3px solid var(--rule);
+    padding: 4px 0 4px 18px;
+  }
+  .story .cat {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    font-weight: 500;
+    color: var(--stamp);
+    border: 1px solid var(--stamp);
+    padding: 1px 7px;
+  }
+  .story h3 {
+    font-family: 'Gowun Batang', serif;
+    font-size: 1.12rem;
+    line-height: 1.4;
+    margin: 8px 0 8px;
+    font-weight: 600;
+  }
+  .story p { font-size: 0.9rem; color: var(--ink-soft); margin: 0 0 10px; }
+  .story .byline { font-size: 0.78rem; color: var(--ink-soft); }
+
+  /* Column series */
+  .column-section {
+    padding: 44px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .column-intro {
+    color: var(--ink-soft);
+    font-size: 0.94rem;
+    max-width: 68ch;
+    margin: 0 0 28px;
+  }
+  .column-item {
+    border-top: 1px solid var(--rule);
+  }
+  .column-item:last-child { border-bottom: 1px solid var(--rule); }
+  .column-item summary {
+    cursor: pointer;
+    list-style: none;
+    padding: 18px 0;
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+  }
+  .column-item summary::-webkit-details-marker { display: none; }
+  .column-item summary .num {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--stamp);
+    font-weight: 600;
+    font-size: 0.78rem;
+    border: 1px solid var(--stamp);
+    padding: 1px 7px;
+    flex-shrink: 0;
+  }
+  .column-item summary .col-title {
+    font-family: 'Gowun Batang', serif;
+    font-size: 1.08rem;
+    font-weight: 600;
+  }
+  .column-item summary .toggle {
+    margin-left: auto;
+    color: var(--ink-soft);
+    font-size: 0.85rem;
+  }
+  .column-item[open] summary .toggle::after { content: "닫기"; }
+  .column-item:not([open]) summary .toggle::after { content: "펼치기"; }
+  .column-body {
+    padding: 0 0 24px;
+    font-size: 0.94rem;
+    color: var(--ink-soft);
+  }
+  .column-body p { margin: 0 0 14px; }
+  .column-body .col-note {
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    border-top: 1px solid var(--rule);
+    padding-top: 12px;
+    margin-top: 8px;
+  }
+
+  /* About / mission */
+  .about {
+    padding: 48px 0;
+    border-bottom: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+  }
+  @media (max-width: 720px) {
+    .about { grid-template-columns: 1fr; gap: 24px; }
+  }
+  .about h2 {
+    font-family: 'Gowun Batang', serif;
+    font-size: 1.6rem;
+    margin: 0 0 16px;
+  }
+  .about p { color: var(--ink-soft); font-size: 0.96rem; }
+  .principle-list { margin: 20px 0 0; padding: 0; list-style: none; }
+  .principle-list li {
+    padding: 12px 0;
+    border-top: 1px solid var(--rule);
+    font-size: 0.92rem;
+    display: flex;
+    gap: 14px;
+  }
+  .principle-list li:first-child { border-top: none; }
+  .principle-list .mark { color: var(--seal); font-weight: 700; font-family: 'Gowun Batang', serif; }
+
+  /* Contact / footer */
+  footer { padding: 44px 0 40px; }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 40px;
+  }
+  @media (max-width: 720px) {
+    .footer-grid { grid-template-columns: 1fr; }
+  }
+  footer h2 {
+    font-family: 'Gowun Batang', serif;
+    font-size: 1.2rem;
+    margin: 0 0 14px;
+  }
+  .contact-line { font-size: 0.92rem; margin: 6px 0; color: var(--ink-soft); }
+  .contact-line strong { color: var(--ink); font-weight: 600; }
+  .foot-note {
+    margin-top: 24px;
+    padding-top: 18px;
+    border-top: 1px solid var(--rule);
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+  }
+
+  /* Show more / collapse toggle for growing lists */
+  .story-hidden { display: none !important; }
+  .show-more-btn {
+    display: block;
+    margin: 20px auto 0;
+    padding: 8px 18px;
+    background: none;
+    border: 1px solid var(--stamp);
+    color: var(--stamp);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    cursor: pointer;
+  }
+  .show-more-btn:hover { background: var(--stamp); color: var(--panel); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="masthead-top">
+      <div class="kinn-tag"><strong>KINN</strong> 한국독립언론네트워크 회원사 / 뉴스타파함께재단 협력매체</div>
+      <div class="date-tag" id="today"></div>
+    </div>
+    <div class="masthead-inner">
+      <div class="wordmark">코그 <span class="wordmark-en">KOREA GLOBAL</span></div>
+      <div class="tagline">독립적 시각으로 진실을 취재합니다</div>
+      <div class="stamp-badge">취재중<br>ONGOING<br>COVERAGE</div>
+    </div>
+    <nav class="section-nav">
+      <ul>
+        <li><a href="#stories">탐사보도</a></li>
+        <li><a href="#stories">경제·기업</a></li>
+        <li><a href="#column">칼럼</a></li>
+        <li><a href="#column-en">English</a></li>
+        <li><a href="#education">교육</a></li>
+        <li><a href="#archive">자료실</a></li>
+        <li><a href="#precedents">입법/판례</a></li>
+        <li><a href="#research">연구회</a></li>
+        <li><a href="#about">코그 소개</a></li>
+        <li><a href="#contact">제보·문의</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div>
+      <div class="hero-eyebrow">오늘의 탐사보도</div>
+      <h1>디지털교과서 태블릿 입찰담합 의혹, 공정위 심의 절차 개시</h1>
+      <p class="dek">공정거래위원회가 디지털교과서용 태블릿 컴퓨터 입찰담합 의혹에 대한 심사보고서를 위원회에 제출하고 4개 제조·판매사(아이브리지닷컴, 에이텍컴퓨터, 유니와이드, 포유디지탈)에 송부했습니다. 심사관은 영향받은 입찰 규모를 약 650억 원, 공급 물량을 20만 대 이상으로 파악하고, 시정조치·과징금과 함께 법인 및 관련 임직원에 대한 고발 의견을 제시했습니다. 최종 판단은 향후 위원회 심의를 거쳐 내려집니다.</p>
+      <div class="hero-meta">코그 · 공정거래위원회 보도자료 (2026.09.18)</div>
+    </div>
+    <div class="hero-side">
+      <h2>많이 읽은 기사</h2>
+      <div class="side-item">
+        <span class="cat">영상</span>
+        <a href="https://www.youtube.com/watch?v=eaJAJ78y4_0&t=3139s" target="_blank" rel="noopener">이준길 코그고문, 삼프로TV 출연 영상</a>
+      </div>
+      <div class="side-item">
+        <span class="cat">정부업무보고</span>
+        <a href="https://www.youtube.com/live/oRxy8imLniA?si=jAA_G_yTM1eGbAVK" target="_blank" rel="noopener">공정위·금융위 업무보고, 쿠팡 개인정보 유출 사태 도마 위에</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="stories" id="stories">
+    <div class="section-head">
+      <h2>최신 기사</h2>
+      <span>전체 보기</span>
+    </div>
+    <div class="story-grid">
+      <article class="story">
+        <span class="cat">해외</span>
+        <h3>미국 FTC, 소비자 피해 신고 데이터를 시각화 자료로 공개</h3>
+        <p>미국 연방거래위원회(FTC)가 운영하는 'Explore Data' 페이지는 사기·신원도용·스팸전화(Do Not Call) 등 소비자 신고를 모은 Consumer Sentinel Network 데이터를 대화형 대시보드로 제공합니다. 연령대별·지역별·시기별 사기 피해 현황, 결제·연락 수단별 통계는 물론, FTC 법 집행으로 소비자에게 환불된 금액과 해외발(국경 간) 사기 신고 추이까지 별도 페이지로 나눠 살펴볼 수 있습니다. 국내 공정위 통계와 비교해볼 만한 자료입니다.</p>
+        <div class="byline"><a href="https://www.ftc.gov/news-events/explore-data" target="_blank" rel="noopener">FTC Explore Data</a></div>
+      </article>
+      <article class="story">
+        <span class="cat">하도급</span>
+        <h3>협력업체 도면 무단 활용한 난방기기 제조업체, 공정위 제재</h3>
+        <p>부품 구매단가를 낮추려 협력업체를 이원화하는 과정에서, 기존 수급사업자의 온도센서 도면을 무단으로 자사 도면화해 경쟁업체에 제공한 난방기기 제조업체가 공정거래위원회 제재를 받았습니다.</p>
+        <div class="byline"><a href="https://gilbertcompliance.co.kr/case-subcontract-2026-08-28/" target="_blank" rel="noopener">길버트컴플라이언스 원문 보기</a></div>
+      </article>
+      <article class="story">
+        <span class="cat">입법동향</span>
+        <h3>AI 성능 광고, 이제는 실증 못 하면 중지명령</h3>
+        <p>공정거래위원회가 「표시·광고 내용의 실증에 관한 운영 고시」를 개정해, AI·신기술을 내세운 광고도 사전 실증 대상임을 명확히 했습니다. 자료 제출 기한은 최대 30일로 단축되고, 기한 내 미제출 시 광고 중지명령과 과태료가 뒤따릅니다.</p>
+        <div class="byline"><a href="https://gilbertcompliance.co.kr/legal-update-2026-09-02/" target="_blank" rel="noopener">길버트컴플라이언스 원문 보기</a></div>
+      </article>
+      <article class="story">
+        <span class="cat">입법동향</span>
+        <h3>공시의무 위반, 반복하면 최대 50% 가중 — 봐주기 감경은 대폭 삭제</h3>
+        <p>공정거래위원회가 대기업집단 공시의무 위반 과태료 고시 개정안을 행정예고했습니다. 종전엔 4회 이상 위반해야 붙던 가중이 1회부터 적용되고, 지연일수·최초위반 감경은 사라집니다. 최근 5년간 50개 넘는 기업이 2회 이상 반복 위반한 것으로 나타났습니다.</p>
+        <div class="byline"><a href="https://gilbertcompliance.co.kr/legal-update-2026-09-07/" target="_blank" rel="noopener">길버트컴플라이언스 원문 보기</a></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="column-section" id="column">
+    <div class="section-head">
+      <h2>칼럼: 컴플라이언스가 답이다</h2>
+      <span>전 5회</span>
+    </div>
+    <p class="column-intro">코그 편집부가 이준길, 『공정거래 리스크 관리 — 컴플라이언스가 답이다』(유비북스, 2018)를 바탕으로 요약·재구성한 연재입니다. 항목을 눌러 전문을 확인하세요.</p>
+
+    <details class="column-item">
+      <summary><span class="num">1회</span><span class="col-title">청문회 증인석에서 시작된 질문</span><span class="toggle"></span></summary>
+      <div class="column-body">
+        <p>2008년 가을, 저자는 국회 정무위원회 국정감사에 증인으로 출석합니다. 질문의 핵심은 단순했습니다. 공정거래위원회 출신 인사가 퇴직 직후 관련 기업으로 자리를 옮기는 것이 로비 아니냐는 것. 저자는 자신의 업무가 소송이나 로비가 아니라 '컴플라이언스 프로그램' 운영이라고 답합니다.</p>
+        <p>이 짧은 문답이 책 전체를 관통하는 질문을 던집니다. 기업 안에서 법규를 자율적으로 지키게 만드는 일은, 실제로 무엇을 하는 일인가. 그리고 그것은 왜 필요한가.</p>
+        <p>저자가 제시하는 답은 명확합니다. 1990년대 후반 이후 공정거래 위반에 대한 제재는 시정명령 수준에서 수백억 원대 과징금과 형사고발로 급격히 무거워졌습니다. 게다가 공정거래 위반은 '비윤리적 경영'이라는 낙인으로 이어져 브랜드 이미지에 직접 타격을 줍니다. 국내 규제를 넘어 미국·EU 등 해외 제재로 확산되는 사례도 늘고 있습니다. 그럼에도 국내 기업 다수는 여전히 사고가 터진 뒤에야 대응하는 '사후약방문' 구조에 머물러 있다는 것이 저자의 진단입니다.</p>
+        <p class="col-note">다음 회 — '공정거래 리스크'란 정확히 무엇을 가리키는지, 그리고 그것이 왜 관리 대상이 되어야 하는지를 다룹니다.</p>
+      </div>
+    </details>
+
+    <details class="column-item">
+      <summary><span class="num">2회</span><span class="col-title">리스크는 안 보일 뿐, 항상 거기 있다</span><span class="toggle"></span></summary>
+      <div class="column-body">
+        <p>책은 2009년 영화 《The Informant!》의 한 장면으로 이야기를 엽니다. 국제 카르텔 모임에 처음 참석한 한 한국 기업 임원이 "우리도 진작 이 모임에 낄 걸 그랬다"는 식의 태도를 보이는 장면입니다. 저자는 이 장면을 통해, 담합이 내부자들에게는 얼마나 자연스럽게 느껴질 수 있는지를 보여줍니다. 실제로 이 사건으로 관련 기업들은 수백만 달러대 벌금과 임원 실형을 감수해야 했습니다.</p>
+        <p>저자는 '공정거래 리스크'를 넓게 정의합니다. 공정거래법뿐 아니라 하도급법, 대규모유통업법, 가맹사업법 등 공정거래위원회가 관장하는 모든 법령 위반 가능성이 여기에 포함됩니다. 그리고 리스크(잠재적 가능성)와 이슈(실제로 터진 문제)를 구분합니다. 아무리 관리를 잘해도 이슈는 발생하지만, 관리 여부에 따라 그 충격의 크기는 완전히 달라진다는 것이 핵심입니다.</p>
+        <p>책이 짚는 위험 요인은 다양합니다. 과징금 규모의 확대, 형사처벌 가능성의 증가, 평판 리스크, 거래 기회의 상실, 그리고 무엇보다 '사전에 위법 여부를 알기 어렵다'는 공정거래법 특유의 모호함입니다. "부당하게", "정당한 이유 없이"라는 문구로 이루어진 조항들은, 행위 당시에는 적법해 보이던 일이 사후적으로 위법 판정을 받을 수 있다는 뜻이기도 합니다. 여기에 "실적과 준법이 충돌할 때 실적을 우선하는" 조직 문화가 더해지면, 리스크는 구조적으로 커질 수밖에 없습니다.</p>
+        <p class="col-note">다음 회 — 이런 리스크를 예방하기 위한 도구, '컴플라이언스 프로그램'이 실제로 무엇을 의미하는지 살펴봅니다.</p>
+      </div>
+    </details>
+
+    <details class="column-item">
+      <summary><span class="num">3회</span><span class="col-title">액자 속의 선언문이 되지 않으려면</span><span class="toggle"></span></summary>
+      <div class="column-body">
+        <p>'컴플라이언스 프로그램'이라는 말은 종종 회사 로비에 걸린 액자 속 선언문 정도로 여겨집니다. 저자는 이 통념을 정면으로 반박합니다. 진짜 컴플라이언스는 문서가 아니라 시스템이어야 하고, 시스템은 실행되지 않으면 존재하지 않는 것과 같다는 것입니다.</p>
+        <p>이 대목에서 저자가 즐겨 쓰는 비유가 물레방아입니다. 아무리 정교하게 만든 물레방아라도 물이 흐르지 않으면 장식품에 불과합니다. 저자는 실제로 충주의 한 공원에서 관리되지 않아 멈춰버린 물레방아 사례를 들어, "잘 만든 제도"와 "작동하는 제도"는 전혀 다른 것이라고 말합니다.</p>
+        <p>책은 효과적인 컴플라이언스 프로그램의 조건을 미국 연방양형기준과 한국 공정거래위원회의 자율준수 프로그램 규정을 나란히 놓고 비교합니다. 두 기준 모두 결국 같은 질문으로 수렴합니다. 최고경영자가 진심으로 이 일을 우선순위에 두는가, 전담 조직에 실질적 권한이 있는가, 그리고 위반자에 대한 평가·보상이 선언과 일치하는가. 저자는 "법이 밥 먹여 주냐"는 한마디가 회의실에서 나오는 순간, 그동안의 모든 선포식과 서약서는 무의미해진다고 잘라 말합니다.</p>
+        <p class="col-note">다음 회 — 이 시스템을 실제로 누가, 어떻게 운영해야 하는지를 다룹니다.</p>
+      </div>
+    </details>
+
+    <details class="column-item">
+      <summary><span class="num">4회</span><span class="col-title">감춰야 할 문제와 드러내야 할 문화</span><span class="toggle"></span></summary>
+      <div class="column-body">
+        <p>컴플라이언스 조직을 현업 부서와 분리해야 한다는 것이 저자의 일관된 주장입니다. 성과를 내야 하는 부서와, 그 과정의 위험을 통제해야 하는 기능은 본질적으로 충돌하기 때문입니다. 이상적인 형태는 대표이사에게 직접 보고하는 자율준수관리자와, 3인 내외의 소규모 전담팀입니다.</p>
+        <p>이 책에서 가장 인상적인 대목 중 하나는 '핫라인'과 '모니터링'의 한계를 솔직하게 인정하는 부분입니다. 저자는 대부분의 내부 신고 시스템이 사실상 장식에 불과하다고 말합니다. 익명성에 대한 신뢰가 없으면, 직원도 협력사도 결국 침묵을 선택하기 때문입니다. 저자가 제안하는 대안은 기술적인 익명성 보장보다 훨씬 단순합니다. "말해도 불이익이 없다"는 믿음을 조직 문화로 만드는 것. 이것이 이루어지지 않으면 최고경영자는 늘 "회사 일을 가장 늦게 아는 사람"이 될 수밖에 없다는 것입니다.</p>
+        <p>문서 관리에 대한 조언도 실용적입니다. 잘못 작성된 보고서 한 줄이 훗날 조사에서 결정적 증거가 될 수 있는 반면, 성급하게 폐기한 자료가 오히려 회사의 무혐의를 입증할 기회를 없애버릴 수도 있다는 것입니다.</p>
+        <p class="col-note">마지막 회 — 이 모든 시스템이 왜 '평상시'에 특히 중요한지, 그리고 이 책이 남기는 메시지를 정리합니다.</p>
+      </div>
+    </details>
+
+    <details class="column-item">
+      <summary><span class="num">5회</span><span class="col-title">사건이 없을 때가 가장 위험한 시간</span><span class="toggle"></span></summary>
+      <div class="column-body">
+        <p>책의 마지막 부는 예방을 넘어, 실제 이슈가 터졌을 때의 '대응 시스템'을 다룹니다. 저자는 대표이사 직속의 '이슈관리 위원회' 같은 구조를 제안하는데, 핵심은 재무·법무·현업 등 여러 부서의 이해관계가 충돌할 때 이를 조정할 최종 권한자가 미리 정해져 있어야 한다는 것입니다. 위기의 순간에 "누가 결정할 것인가"를 그제야 논의하면 이미 늦다는 뜻입니다.</p>
+        <p>이 책 전체를 관통하는 마지막 통찰은 다음과 같습니다. 시스템이 가장 취약해지는 시점은 사고 직후가 아니라, 아무 일도 일어나지 않는 평온한 시기라는 것. 과징금을 맞은 직후에는 누구나 리스크 관리에 열심이지만, 몇 년간 조사를 받지 않으면 경각심은 자연스럽게 무뎌집니다. 저자는 이것을 "회사도 미루는 습관이 있다"는 말로 정리합니다.</p>
+        <p>저자는 스스로 이 책이 "새로운 지식이나 아이디어"를 담고 있지 않다고 겸손하게 말합니다. 하지만 바로 그 지점, 즉 당연한 것을 당연하게 실행하는 일의 어려움을 정면으로 다뤘다는 점에서, 이 책은 컴플라이언스를 형식적 절차가 아니라 조직 문화의 문제로 다시 보게 만듭니다.</p>
+        <p class="col-note">(연재 마침) — 이준길, 『공정거래 리스크 관리 — 컴플라이언스가 답이다』(유비북스, 2018)</p>
+      </div>
+    </details>
+
+    <p class="column-intro" style="margin-top:28px;">저자의 다른 책</p>
+    <div class="story-grid">
+      <article class="story">
+        <span class="cat">책자</span>
+        <h3>2시간만에 끝내는 공정거래법</h3>
+        <p>이준길 저, 94쪽 분량으로 공정거래법 핵심을 빠르게 훑을 수 있는 소책자입니다. 온라인 구매가는 10,000원이며, 코그 계좌로 책값 15,000원을 송금하시면 저자 서명본을 택배로 보내드립니다. 계좌 안내는 하단 연락처로 문의해 주세요.</p>
+        <div class="byline"><a href="https://www.aladin.co.kr/m/mproduct.aspx?ItemId=315779068" target="_blank" rel="noopener">알라딘에서 보기</a></div>
+      </article>
+      <article class="story">
+        <span class="cat">추천도서</span>
+        <h3>미국 반독점법 이야기</h3>
+        <p>천준범 저(전 법무법인 세종 공정거래법 변호사, 현 KT 감사), 법문사(2015), 366쪽. 미국 반독점법의 역사와 주요 판례를 소개하는 책으로, 국내 공정거래법 실무를 비교법적으로 살펴보는 데 참고할 만합니다. 다만 현재 절판되어 새 책 구매는 어렵고, 중고 서적으로만 구할 수 있습니다.</p>
+        <div class="byline"><a href="https://www.aladin.co.kr/m/mproduct.aspx?ItemId=58957189" target="_blank" rel="noopener">알라딘에서 보기</a></div>
+      </article>
+      <article class="story">
+        <span class="cat">추천도서</span>
+        <h3>거버넌스 트렌드 인사이트 2026</h3>
+        <p>천준범 저, 이스터에그(2026), 260쪽. 주주 충실의무를 명시한 상법 개정과 코스피 4000 시대를 연 2025년 한국 자본시장의 흐름을 정리하고 2026년을 전망합니다. 한화, 삼성바이오, 태광산업 등 실제 사례를 통해 지배구조 이슈를 다룹니다.</p>
+        <div class="byline"><a href="https://www.aladin.co.kr/m/mproduct.aspx?ItemId=384180457" target="_blank" rel="noopener">알라딘에서 보기</a></div>
+      </article>
+    </div>
+
+    <p class="column-intro" style="margin-top:28px;">관련 칼럼</p>
+    <details class="column-item">
+      <summary><span class="num">기고</span><span class="col-title">"공정위 처분, 2심제로 충분한가" — 법률신문 칼럼 요약</span><span class="toggle"></span></summary>
+      <div class="column-body">
+        <p>법률신문 법신논단에 실린 홍기태 변호사(법무법인 태평양·전 사법정책연구원장)의 칼럼은, 공정거래위원회의 조사·제재 권한이 계속 커져온 것과 달리 그 처분에 대한 불복 절차는 여전히 고등법원-대법원의 2심제(사실심 1회)에 머물러 있다는 점을 지적합니다. 2026년 상반기 과징금 규모가 전년의 5배(1조7000억 원)에 달했다는 통계를 들어 권한 확대의 속도를 짚고, 조세 사건은 더 독립적인 심판원을 거치고도 3심제를 채택하는 것과 대비해 공정위 사건만 2심제를 유지할 근거가 약하다고 주장합니다. 사실인정이 결론을 좌우하는 공정거래 사건의 특성상, 사실심 한 번으로는 권리구제가 충분치 않다는 것이 핵심 논지입니다.</p>
+        <p class="col-note"><a href="https://www.lawtimes.co.kr/news/articleView.html?idxno=226324" target="_blank" rel="noopener">법률신문 원문 보기</a></p>
+      </div>
+    </details>
+  </section>
+
+  <section class="column-section" id="column-en">
+    <div class="section-head">
+      <h2>English Column: Compliance Is the Answer</h2>
+      <span>Ongoing series</span>
+    </div>
+    <p class="column-intro">KOREA GLOBAL's English-language column, introducing Joon Gil Lee's <em>Fair Trade Risk Management — Compliance Is the Answer</em> (UB Books, 2018) for international readers, one installment at a time.</p>
+
+    <details class="column-item">
+      <summary><span class="num">Part 1</span><span class="col-title">A Question Born in a Committee Room</span><span class="toggle"></span></summary>
+      <div class="column-body">
+        <p>In October 2008, the author testified before a National Assembly committee, facing pointed questions about whether his move from Korea's Fair Trade Commission (KFTC) into a corporate strategy role amounted to lobbying. His answer: his job was compliance, not litigation or influence-peddling.</p>
+        <p>That exchange, he says, crystallized a career-long conviction. Since the late 1990s, penalties for fair-trade violations have escalated from simple corrective orders to fines in the tens or hundreds of billions of won, often paired with criminal referrals. Violations increasingly damage brand reputation and, given the internationalization of competition law, can trigger parallel sanctions abroad — frequently harsher than Korea's own. Yet many Korean companies remain reactive rather than preventive, in part because compliance expertise is still scarce domestically.</p>
+        <p class="col-note">Next: what "fair trade risk" actually covers, and why it deserves active management.</p>
+      </div>
+    </details>
+
+    <details class="column-item">
+      <summary><span class="num">Part 2</span><span class="col-title">Risk Doesn't Announce Itself</span><span class="toggle"></span></summary>
+      <div class="column-body">
+        <p>The book opens with a scene from the 2009 film <em>The Informant!</em>, dramatizing the real ADM lysine cartel — including a newly invited Korean executive shown almost eager to join. The real penalties were severe: ADM paid $100 million; Ajinomoto and Kyowa Hakko roughly $10 million each; several executives served over 30 months in prison. Korean firms alone have paid roughly ₩3.3 trillion combined across 17 international cartel cases.</p>
+        <p>"Fair trade risk" is defined broadly here — covering not just Korea's Fair Trade Act but subcontracting, franchise, large-retail, and consumer-protection statutes as well. The author draws a careful line between <em>risk</em> (an ever-present possibility to be managed) and <em>issue</em> (a problem that has already materialized).</p>
+        <p>Among the risk factors he highlights: ballooning fines, rising criminal exposure, reputational contagion via social media, exclusion from future contracts, and — perhaps most distinctively — the fact that Korean fair-trade law's vague standards ("unjustly," "without justification") often make legality clear only in hindsight.</p>
+        <p class="col-note">Next: what a "compliance program" actually means in practice.</p>
+      </div>
+    </details>
+
+    <details class="column-item">
+      <summary><span class="num">Part 3</span><span class="col-title">More Than a Framed Declaration</span><span class="toggle"></span></summary>
+      <div class="column-body">
+        <p>A compliance program is often reduced, in practice, to a framed mission statement in a lobby. The author pushes back hard on that image: real compliance is a system, and an unexecuted system is no system at all.</p>
+        <p>His recurring metaphor is a decorative waterwheel he encountered in a public park — beautifully built, but motionless, because no water was flowing through it. A "well-designed" program and a "working" program, he argues, are entirely different things.</p>
+        <p>The book compares the U.S. Federal Sentencing Guidelines' seven criteria for an effective compliance program with the KFTC's own seven-element framework — both converging on the same core questions: Does leadership genuinely prioritize this? Does the compliance function have real authority? Do promotion and discipline decisions actually match the stated values? A single dismissive remark from a senior executive, he warns, can undo years of public commitment.</p>
+        <p class="col-note">Next: who should actually run this system, and how.</p>
+      </div>
+    </details>
+
+    <details class="column-item">
+      <summary><span class="num">Part 4</span><span class="col-title">What Gets Hidden, What Gets Voiced</span><span class="toggle"></span></summary>
+      <div class="column-body">
+        <p>The author consistently argues that the compliance function must sit apart from operating business units — since a unit's mandate to pursue growth is structurally at odds with compliance's job of curbing risk. His ideal model: a compliance officer reporting directly to the CEO, backed by a lean team of three.</p>
+        <p>One of the book's more candid sections addresses the limits of hotlines and monitoring. Most internal reporting systems, he admits, are effectively decorative — because employees, suppliers, and partners rarely trust that anonymity will actually protect them. His proposed fix is less technical than cultural: making "no retaliation" a lived reality, not just a policy line. Without it, he notes dryly, senior executives are always "the last to know" what's happening in their own company.</p>
+        <p>His advice on documentation is equally practical: a single carelessly worded internal report can become the key piece of evidence in a future investigation — while records destroyed too hastily can just as easily strip a company of its own best defense.</p>
+        <p class="col-note">Next: why the quietest periods are often the most dangerous.</p>
+      </div>
+    </details>
+
+    <details class="column-item">
+      <summary><span class="num">Part 5</span><span class="col-title">The Danger of Nothing Happening</span><span class="toggle"></span></summary>
+      <div class="column-body">
+        <p>The book's final section moves from prevention to response — proposing a CEO-chaired Issue Management Committee empowered to resolve conflicts between departments (finance, legal, operations) that might otherwise stall a fix while a problem festers.</p>
+        <p>Its closing insight is perhaps the book's sharpest: a compliance system is most vulnerable not right after a scandal, but during the quiet years when nothing seems to be going wrong. Vigilance peaks immediately after a penalty and fades steadily without renewed pressure — what the author calls, simply, companies having "a habit of procrastinating, just like people do."</p>
+        <p>The author is modest about his own contribution, insisting the book offers no new theory or striking idea. But in insisting on the sheer difficulty of consistently doing the obvious thing, it reframes compliance as a question of organizational culture — not paperwork.</p>
+        <p class="col-note">(End of series) — Joon Gil Lee, <em>Fair Trade Risk Management — Compliance Is the Answer</em> (UB Books, 2018)</p>
+      </div>
+    </details>
+  </section>
+
+  <section class="column-section" id="archive">
+    <div class="section-head">
+      <h2>자료실</h2>
+      <span>참고 자료</span>
+    </div>
+    <details class="column-item" open>
+      <summary><span class="num">자료</span><span class="col-title">공정거래법 실무 가이드 — 목차 구성</span><span class="toggle"></span></summary>
+      <div class="column-body">
+        <p>공정거래 관련 실무 자료 중 하나로, 크게 네 영역으로 구성되어 있습니다. ① 대규모기업집단 관련 제도(상호출자·순환출자 금지, 금융·보험사 및 공익법인 의결권 제한, 채무보증 제한, 지주회사 제도, 기업집단 공시제도, 연혁 및 통계 등), ② 기업결합 신고·심사 제도, ③ 시장지배적지위 남용행위·불공정거래행위·재판매가격유지행위 등 단독행위 제도, ④ 부당공동행위(담합)·사업자단체금지행위·자진신고자 감면제도·공동행위 인가제도 등 공동행위 제도를 폭넓게 다룹니다.</p>
+        <p class="col-note">코그 고문의 코멘트: 다른 나라들은 주로 기업결합·독과점·담합을 중심으로 경쟁법을 다루는데, 우리나라는 여기에 더해 '불공정거래행위'라는 별도 범주로 이른바 갑을문제를 규율합니다. 이런 법체계는 일본과 우리나라 정도만 갖고 있는 특징이라고 합니다.</p>
+      </div>
+    </details>
+    <p class="column-intro" style="margin-top:28px;">공정거래위원회 공식 자료 (외부 사이트로 연결됩니다)</p>
+    <div class="story-grid">
+      <article class="story">
+        <span class="cat">업무책자</span>
+        <h3>정책자료 · 안내 책자</h3>
+        <p>공정거래위원회가 발간하는 제도 안내 책자 및 정책자료를 모아둔 페이지입니다.</p>
+        <div class="byline"><a href="https://www.ftc.go.kr/DATA/www/cts662_file.pdf" target="_blank" rel="noopener">공정거래위원회 정책자료</a></div>
+      </article>
+      <article class="story">
+        <span class="cat">업무계획</span>
+        <h3>주요업무계획</h3>
+        <p>공정거래위원회가 매년 수립해 대통령에게 보고하는 연간 업무계획입니다.</p>
+        <div class="byline"><a href="https://www.ftc.go.kr/www/selectBbsNttView.do?pageUnit=10&pageIndex=1&searchCnd=all&key=23&bordCd=2&nttSn=46824" target="_blank" rel="noopener">공정거래위원회 주요업무계획</a></div>
+      </article>
+      <article class="story">
+        <span class="cat">백서</span>
+        <h3>공정거래백서</h3>
+        <p>한 해의 공정거래 정책과 사건 처리 현황을 정리한 연례 백서입니다.</p>
+        <div class="byline"><a href="https://www.ftc.go.kr/www/downloadBbsFile.do?atchmnflNo=53945" target="_blank" rel="noopener">공정거래위원회 공정거래백서 (PDF)</a></div>
+      </article>
+      <article class="story">
+        <span class="cat">국제기준</span>
+        <h3>OECD 다국적기업 가이드라인</h3>
+        <p>OECD가 회원국 정부 공동으로 다국적기업에 권고하는 책임있는 기업활동 기준입니다. 정보공개, 인권, 노동, 환경, 反부패, 소비자 이익, 경쟁 등을 폭넓게 다루며, 법적 구속력은 없지만 각국 연락사무소(NCP)를 통한 비사법적 분쟁 처리 절차를 두고 있습니다.</p>
+        <div class="byline"><a href="https://mneguidelines.oecd.org/" target="_blank" rel="noopener">OECD Guidelines for Multinational Enterprises</a></div>
+      </article>
+      <article class="story">
+        <span class="cat">해외기관</span>
+        <h3>미국 연방거래위원회(FTC)</h3>
+        <p>독과점·소비자보호를 함께 관장하는 미국의 경쟁당국입니다. 기업결합 심사, 반경쟁행위 집행, 소비자 피해 데이터 공개 등 공정위·조정원 업무와 비교해볼 자료가 많습니다.</p>
+        <div class="byline"><a href="https://www.ftc.gov/" target="_blank" rel="noopener">ftc.gov</a></div>
+      </article>
+      <article class="story">
+        <span class="cat">해외기관</span>
+        <h3>우즈베키스탄 경쟁촉진·소비자보호위원회</h3>
+        <p>우즈베키스탄의 경쟁당국으로, 독과점·불공정경쟁 감시와 소비자보호를 함께 관장합니다. 아래와 같은 개방형 데이터(명단)를 공개하고 있습니다.</p>
+        <ul class="principle-list">
+          <li><span class="mark">·</span><span><a href="https://raqobat.gov.uz/en/open-data/the-state-register-of-business-entities-that-occupy-a-dominant-position-in-the-product-or-financial-market/" target="_blank" rel="noopener">특정 시장에서 지배적 지위를 차지하는 것으로 인정된 경제주체 명단</a></span></li>
+          <li><span class="mark">·</span><span><a href="https://raqobat.gov.uz/raqamli-platforma-sifatida-ustun-mavqega-ega-deb-etirof-etilgan-korhonalar-rojhati/" target="_blank" rel="noopener">디지털 플랫폼으로서 시장지배적 지위를 가진 것으로 인정된 기업 명단</a></span></li>
+          <li><span class="mark">·</span><span><a href="https://raqobat.gov.uz/en/open-data/the-list-of-natural-monopolies/" target="_blank" rel="noopener">자연독점 사업자로 지정된 기업 명단</a></span></li>
+          <li><span class="mark">·</span><span><a href="https://raqobat.gov.uz/ustun-muzokara-kuchiga-ega-deb-etirof-etilgan-korhonalar-rojhati/" target="_blank" rel="noopener">거래상 우월적 지위를 가진 것으로 인정된 기업 명단</a></span></li>
+        </ul>
+        <div class="byline"><a href="https://raqobat.gov.uz/en/" target="_blank" rel="noopener">raqobat.gov.uz (영문)</a></div>
+      </article>
+    </div>
+
+    <details class="column-item">
+      <summary><span class="num">참고</span><span class="col-title">우즈베키스탄 시장지배적 사업자 명단 — 산업별 요약</span><span class="toggle"></span></summary>
+      <div class="column-body">
+        <p>우즈베키스탄 경쟁발전·소비자권리보호위원회가 공개하는 "상품·금융 시장 지배적 사업자 국가등록부"는 주요 산업 부문별로 독점 또는 시장지배적 지위를 가진 기업·그룹을 등록해 공시합니다. 법령상 일정 기준 이상의 시장 점유율이나 독점적 영향력을 가진 기업을 이 목록에 등재해 불공정거래·가격담합·우월적 지위 남용을 집중 관리하며, 데이터는 개정일자별로 갱신됩니다.</p>
+        <p>주요 산업별 대표 사업자로는 곡물·식료품 분야의 Uzdonmahsulot(밀·사료)와 Khorazm Sugar·Angren Sugar(설탕), 에너지·석유가스 분야의 Uzbekcoal(석탄), Uzbekneftegaz(천연가스·LPG·원유), 부하라·페르가나 정유공장(석유제품), 화학공업 분야의 Navoiyazot·Maxam-Chirchiq·Uzkimyosanoat 그룹(비료·화학원료), 기계·자동차·금속 분야의 UzAuto Motors(승용차), SamAuto(버스), Olmaliq KMK·Uzmetkombinat(정련동·철강), 통신·운송 분야의 Uzbektelecom(국제데이터·회선임대)과 Uzbekistan Airways(항공운송) 등이 있습니다.</p>
+        <p class="col-note"><a href="https://raqobat.gov.uz/en/open-data/the-state-register-of-business-entities-that-occupy-a-dominant-position-in-the-product-or-financial-market/" target="_blank" rel="noopener">원문 명단 보기 (raqobat.gov.uz)</a></p>
+      </div>
+    </details>
+  </section>
+
+  <section class="column-section" id="education">
+    <div class="section-head">
+      <h2>교육</h2>
+      <span>편집자 후기</span>
+    </div>
+    <details class="column-item" open>
+      <summary><span class="num">체험기</span><span class="col-title">담합, 무료 온라인 교육으로 직접 들어봤습니다</span><span class="toggle"></span></summary>
+      <div class="column-body">
+        <p>공정거래법에서 말하는 '부당한 공동행위'가 바로 흔히 말하는 담합입니다. 코그 편집자가 한국공정거래조정원이 운영하는 온라인 공정거래교육센터의 담합 관련 무료 강의를 직접 수강해 보았습니다.</p>
+        <p>입문자도 부담 없이 따라갈 수 있는 구성이었고, 실제 사례 위주로 설명이 이어져 이론서보다 체감이 잘 됐습니다. 다만 실무에 바로 적용할 수준의 심화 내용까지는 다루지 않아, 기업 담당자라면 입문 강의로 감을 잡은 뒤 아래 교육 파트너들의 심화 과정으로 넘어가는 순서를 추천합니다.</p>
+        <p class="col-note">심화 학습을 원하시면 아래 '교육 파트너'를 참고해 주세요.</p>
+      </div>
+    </details>
+    <p class="column-intro" style="margin-top:28px;">교육 파트너 (외부 사이트로 연결됩니다)</p>
+    <div class="story-grid">
+      <article class="story">
+        <span class="cat">컴플라이언스</span>
+        <h3>길버트컴플라이언스</h3>
+        <p>공정거래 컴플라이언스 실무 교육 및 자문을 전문으로 하는 기관입니다.</p>
+        <div class="byline"><a href="https://gilbertcompliance.co.kr/" target="_blank" rel="noopener">gilbertcompliance.co.kr</a></div>
+      </article>
+      <article class="story">
+        <span class="cat">기업교육</span>
+        <h3>한국생산성본부(KPC)</h3>
+        <p>내부통제·윤리경영·컴플라이언스 등 기업 실무자 대상 교육과정을 운영합니다.</p>
+        <div class="byline"><a href="https://www.kpc.or.kr/" target="_blank" rel="noopener">kpc.or.kr</a></div>
+      </article>
+      <article class="story">
+        <span class="cat">무료강의</span>
+        <h3>공정거래교육센터</h3>
+        <p>한국공정거래조정원이 운영하는 온라인 공정거래교육센터입니다. 편집자가 직접 수강한 담합 강의를 포함해, 공정거래법·하도급법 입문 강의를 무료로 제공합니다.</p>
+        <div class="byline"><a href="https://edu.kofair.or.kr/usr/member/dash/detail.do" target="_blank" rel="noopener">edu.kofair.or.kr</a></div>
+      </article>
+      <article class="story">
+        <span class="cat">대학원</span>
+        <h3>한림국제대학원대학교 — 컴플라이언스&기업윤리전공</h3>
+        <p>미국법학과 내 전공으로, 컴플라이언스 실무·기업윤리를 다루는 석사과정입니다. 전공 게시판에 채용·특강 소식이 올라옵니다.</p>
+        <div class="byline"><a href="https://www.hugs.ac.kr/site/board/selectBoardList.do?bbsId=BBSMSTR_000000000084" target="_blank" rel="noopener">한림국제대학원대학교</a></div>
+      </article>
+      <article class="story">
+        <span class="cat">학부</span>
+        <h3>숭실대학교 국제법무학과</h3>
+        <p>법과대학 소속 학과로, 기업법무·컴플라이언스 관련 특강과 해외 연수 프로그램을 운영합니다.</p>
+        <div class="byline"><a href="https://lawyer.ssu.ac.kr/" target="_blank" rel="noopener">숭실대학교 국제법무학과</a></div>
+      </article>
+      <article class="story">
+        <span class="cat">융합전공</span>
+        <h3>명지대학교 — 금융컴플라이언스 융합전공</h3>
+        <p>경제학과·법학과가 함께 운영하는 융합전공으로, 금융규제·자본시장법·위험관리 등을 아우르는 교과과정을 제공합니다.</p>
+        <div class="byline"><a href="https://www.mju.ac.kr/mjukr/10049/subview.do" target="_blank" rel="noopener">명지대학교 금융컴플라이언스</a></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="stories" id="precedents">
+    <div class="section-head">
+      <h2>입법/판례</h2>
+      <span>주요 공정위 사건</span>
+    </div>
+    <p class="column-intro">코그가 취재·정리한 공정거래 관련 주요 심결·사건을 모읍니다. 계속 추가될 예정입니다.</p>
+    <div class="story-grid">
+      <article class="story">
+        <span class="cat">하도급</span>
+        <h3>협력업체 도면 무단 활용 — 난방기기 제조업체 K사</h3>
+        <p>부품 구매단가 절감을 위해 협력업체를 이원화하는 과정에서, 기존 수급사업자의 온도센서 도면을 무단으로 자사 도면화해 경쟁업체에 제공한 행위에 대해 공정거래위원회가 제재한 사건입니다.</p>
+        <div class="byline"><a href="https://gilbertcompliance.co.kr/case-subcontract-2026-08-28/" target="_blank" rel="noopener">길버트컴플라이언스 원문 보기 (2026.08.28)</a></div>
+      </article>
+      <article class="story">
+        <span class="cat">해외판례</span>
+        <h3>특허권도 한 번 팔면 끝 — 미국 연방대법원, 렉스마크 사건</h3>
+        <p>미국 연방대법원은 2017년, 프린터 카트리지 제조사 렉스마크가 "1회 사용 후 반납"이라는 판매 조건을 걸었더라도, 일단 정당하게 판매된 이상 특허권은 소진되어 재활용·재판매 업체를 특허 침해로 제소할 수 없다고 8대 0으로 판결했습니다. 해외에서 판매된 정품을 되사들여 미국에 재판매하는 병행수입 역시 특허 침해가 아니라고 못박았습니다. 소모품·수리 시장까지 특허권으로 독점하려는 시도에 제동을 건 판결로, 국내 시장지배적 지위 남용 논의와도 맞닿아 있습니다.</p>
+        <div class="byline">Impression Products, Inc. v. Lexmark International, Inc. (2017)</div>
+      </article>
+      <article class="story">
+        <span class="cat">입법</span>
+        <h3>대규모유통업법 개정안, 국회 본회의 통과 — 대금 지급기한 절반으로 단축</h3>
+        <p>대규모유통업자의 납품대금 지급기한을 특약매입 등은 40일→20일, 직매입은 60일→35일로 단축하는 대규모유통업법 개정안이 9월 17일 국회 본회의를 통과했습니다. 티몬·위메프 사태, 홈플러스 회생절차 등을 계기로 공정위가 실태조사와 의견수렴을 거쳐 마련한 개선방안이 국회 논의를 거쳐 확정된 것으로, 천재지변 등 유통업자 책임없는 사유나 긴급한 경영상 우려가 있는 경우엔 예외를 인정합니다. 공포 후 1년이 지난 시점부터 시행됩니다.</p>
+        <div class="byline"><a href="https://www.ftc.go.kr/www/selectBbsNttView.do?bordCd=3&key=12&nttSn=48026&searchCtgry=01,02" target="_blank" rel="noopener">공정거래위원회 보도자료 (2026.09.17)</a></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="about" id="research">
+    <div>
+      <h2>공정거래 컴플라이언스 연구회</h2>
+      <p>CP(컴플라이언스 프로그램) 업무에 관심 있는 기업 담당자, 변호사, 교수 등이 함께 모여 공정거래 관련 주제로 발표하고 정보를 나누는 자리로 시작된 연구회입니다. 지멘스, 현대백화점, GS칼텍스 등 국내외 주요 기업의 법무팀장급(주로 부장급) 인사들이 참여해 왔고, SK텔레콤에서는 부사장급 인사가 함께한 적도 있습니다.</p>
+      <p>모임을 이끌려면 참석자들에게 실제로 나눠줄 것이 있어야 한다는 것이 코그 고문 이준길의 지론입니다. 그런 사람이 되기 위한 노력을 지금도 계속하고 있다고 합니다.</p>
+    </div>
+    <div>
+      <h2>연구회 소식</h2>
+      <ul class="principle-list">
+        <li><span class="mark">·</span> 정기 세미나 및 사례 스터디 (일정 준비 중)</li>
+        <li><span class="mark">·</span> 코그 칼럼·연재와 연계한 심층 자료 발간</li>
+        <li><span class="mark">·</span> 참여 문의는 하단 연락처로 부탁드립니다</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <div>
+      <h2>코그를 소개합니다</h2>
+      <p>코그(KOREA GLOBAL)는 한국독립언론네트워크(KINN) 소속 매체로, 권력과 자본으로부터 독립적인 시각을 지키며 공공의 이익을 위한 탐사보도를 지향합니다. 뉴스타파함께재단과 협력하여 취재 역량과 재원의 독립성을 함께 유지하고 있습니다.</p>
+      <p>편집장 김선영은 미국 변호사 자격을 바탕으로 기업 지배구조, 공정거래, 컴플라이언스 이슈를 중점적으로 다루고 있습니다.</p>
+    </div>
+    <div>
+      <h2>취재 원칙</h2>
+      <ul class="principle-list">
+        <li><span class="mark">一</span> 사실 확인 없이는 보도하지 않습니다.</li>
+        <li><span class="mark">二</span> 취재원 보호를 최우선으로 합니다.</li>
+        <li><span class="mark">三</span> 광고주·후원자의 압력으로부터 편집권을 지킵니다.</li>
+        <li><span class="mark">四</span> 정정과 반론은 신속하고 투명하게 반영합니다.</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <div class="footer-grid">
+      <div>
+        <h2>제보 및 문의</h2>
+        <p class="contact-line"><strong>편집장</strong> 김선영 (Sophia Kim)</p>
+        <p class="contact-line"><strong>전화</strong> 010-7788-1029</p>
+        <p class="contact-line"><strong>이메일</strong> sophiakim1028@naver.com</p>
+        <p class="contact-line"><strong>주소</strong> 경기도 안양시 동안구 관양동 시민대로 327번길 11-41 4012호</p>
+      </div>
+      <div>
+        <h2>코그 소식받기</h2>
+        <p class="contact-line">제보는 익명으로도 가능하며, 모든 제보는 코그의 취재 윤리 원칙에 따라 신중히 검토됩니다.</p>
+      </div>
+    </div>
+    <div class="foot-note">© 코그(KOREA GLOBAL) · KINN 한국독립언론네트워크 회원사</div>
+  </footer>
+
+</div>
+<script>
+  try {
+    const d = new Date();
+    document.getElementById('today').textContent = d.toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' });
+  } catch (e) {}
+
+  try {
+    const THRESHOLD = 4;
+    document.querySelectorAll('.story-grid').forEach(function (grid) {
+      const items = Array.from(grid.children);
+      if (items.length <= THRESHOLD) return;
+      items.slice(THRESHOLD).forEach(function (el) { el.classList.add('story-hidden'); });
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'show-more-btn';
+      const hiddenCount = items.length - THRESHOLD;
+      btn.textContent = '더 보기 (' + hiddenCount + ')';
+      btn.addEventListener('click', function () {
+        const isHidden = grid.querySelector('.story-hidden');
+        if (isHidden) {
+          items.forEach(function (el) { el.classList.remove('story-hidden'); });
+          btn.textContent = '접기';
+        } else {
+          items.slice(THRESHOLD).forEach(function (el) { el.classList.add('story-hidden'); });
+          btn.textContent = '더 보기 (' + hiddenCount + ')';
+          grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+      grid.insertAdjacentElement('afterend', btn);
+    });
+  } catch (e) {}
+</script>
+</body>
+</html>
